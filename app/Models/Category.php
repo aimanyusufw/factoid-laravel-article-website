@@ -15,7 +15,7 @@ class Category extends Model
     protected $table = 'blog_categories';
 
     protected $fillable = [
-        "name", "slug", "thumbnail", "description", "is_visible"
+        "name", "slug", "thumbnail", "description",
     ];
 
     protected $appends = ["thumbnail_url"];
