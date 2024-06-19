@@ -15,7 +15,7 @@ class Post extends Model
     protected $table = 'blog_posts';
 
     protected $fillable = [
-        "title", "slug", "excerpt", "banner", "content", "published_at", "blog_category_id", "blog_author_id"
+        "title", "slug", "excerpt", "banner", "content", "published_at", "blog_category_id", "blog_author_id", "status"
     ];
 
     protected $casts = [

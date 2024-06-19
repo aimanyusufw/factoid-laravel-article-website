@@ -42,7 +42,8 @@ return new class extends Migration
             $table->text('excerpt')->nullable();
             $table->string('banner')->nullable();
             $table->longText('content');
-            $table->date('published_at')->nullable();
+            $table->boolean('status');
+            $table->date('published_at')->default(now());
             $table->timestamps();
         });
     }
