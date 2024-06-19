@@ -50,7 +50,7 @@ class CategoryResource extends Resource
                         ->image()
                         ->disk("public")
                         ->maxSize(5120)
-                        ->imageCropAspectRatio('16:9')
+                        ->imageCropAspectRatio('9:16')
                         ->directory("category")
                         ->columnSpan([
                             'sm' => 2,
@@ -73,8 +73,10 @@ class CategoryResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->emptyStateIcon('heroicon-o-paper-clip')
+            ->emptyStateDescription('Once categories are added, they will appear here.')
             ->columns([
-                Tables\Columns\TextColumn::make('index')->state(
+                Tables\Columns\TextColumn::make('no')->state(
                     static function (ContractsHasTable $livewire, stdClass $rowLoop): string {
                         return (string) (
                             $rowLoop->iteration +

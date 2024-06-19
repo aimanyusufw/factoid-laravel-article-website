@@ -21,7 +21,8 @@ class Author extends Model
         "profile_picture",
         "bio",
         "github_handle",
-        "twitter_handle"
+        "twitter_handle",
+        "instagram_handle"
     ];
 
     protected $appends = [
