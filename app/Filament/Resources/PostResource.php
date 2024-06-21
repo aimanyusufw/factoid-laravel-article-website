@@ -86,7 +86,7 @@ class PostResource extends Resource
     {
         return $table
             ->emptyStateIcon('heroicon-o-bookmark')
-            ->emptyStateDescription('Once posts are added, they will appear here.')
+            ->emptyStateDescription('Determine the category and author before making a post.')
             ->columns([
                 Tables\Columns\ImageColumn::make('banner')
                     ->circular(),

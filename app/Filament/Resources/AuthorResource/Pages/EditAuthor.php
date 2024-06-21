@@ -17,8 +17,8 @@ class EditAuthor extends EditRecord
         return [
             Actions\DeleteAction::make()
                 ->after(function (Author $author) {
-                    if ($author->thumbnail) {
-                        Storage::disk('public')->delete($author->thumbnail);
+                    if ($author->profile_picture) {
+                        Storage::disk('public')->delete($author->profile_picture);
                     }
                 }),
         ];
