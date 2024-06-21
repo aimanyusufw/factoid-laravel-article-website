@@ -1,9 +1,9 @@
-<nav class="container">
+<nav class="container absolute top-0 left-0 right-0">
     <div class="w-full px-4 py-5">
         <div class="flex justify-between items-baseline">
-            <h1 class="text-2xl font-serif font-bold">
+            <a href="/" class="text-2xl font-serif font-bold">
                 Factoid.
-            </h1>
+            </a>
             <div class="flex items-center gap-5 font-medium text-sm text-[#64748B]">
                 <a href="/" class="{{ request()->url('/') ? 'text-black' : '' }}">Home</a>
                 <a href="/discovered">Discover</a>
