@@ -27,6 +27,40 @@
 
     <script>
         feather.replace();
+
+        const navbar = document.getElementById("navbar");
+        const hamburgerButton = document.getElementById("hamburger-toggle");
+        const responsiveSideBar = document.getElementById("sidebar-responsive");
+
+        hamburgerButton.addEventListener("click", () => {
+            responsiveSideBar.classList.toggle("transform-none");
+            document.body.classList.toggle("overflow-hidden");
+            responsiveSideBar.classList.toggle("-translate-x-full");
+
+            let sidebarBackDrop = document.getElementById("backdrop");
+
+            if (!sidebarBackDrop) {
+                var backdrop = document.createElement("div");
+                backdrop.className = "bg-black bg-opacity-40 fixed inset-0 z-30";
+                backdrop.id = "backdrop";
+                document.body.appendChild(backdrop);
+
+                backdrop.addEventListener("click", () => {
+                    responsiveSideBar.classList.toggle("transform-none");
+                    document.body.classList.toggle("overflow-hidden");
+                    responsiveSideBar.classList.toggle("-translate-x-full");
+                    backdrop.remove();
+                });
+            } else {
+                sidebarBackDrop.remove();
+            }
+        });
+
+
+        window.addEventListener("scroll", () => {
+            const windowPost = window.scrollY > 0;
+            navbar.classList.toggle("navbar-fixed", windowPost);
+        });
     </script>
 </body>
 

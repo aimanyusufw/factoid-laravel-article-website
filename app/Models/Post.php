@@ -15,7 +15,7 @@ class Post extends Model
     protected $table = 'blog_posts';
 
     protected $fillable = [
-        "title", "slug", "excerpt", "banner", "content", "published_at", "blog_category_id", "blog_author_id", "status"
+        "title", "slug", "excerpt", "banner", "content", "published_at", "blog_category_id", "blog_author_id", "status", "score"
     ];
 
     protected $casts = [
@@ -26,6 +26,21 @@ class Post extends Model
         "banner_url"
     ];
 
+    public function popularPosts($take)
+    {
+        return $this->with(["author", "category"])
+            ->orderBy("score", "DESC")
+            ->take($take)
+            ->get();
+    }
+
+    public function readTime()
+    {
+        $readingTime = ceil(str_word_count(strip_tags($this->content)) / 250);
+
+        return $readingTime . " min read";
+    }
+
     public function bannerUrl(): Attribute
     {
         return Attribute::get(fn () => $this->banner ? asset(Storage::url($this->banner))  : "");
@@ -33,7 +48,7 @@ class Post extends Model
 
     public function scopePublished($query)
     {
-        return $query->whereNotNull("published_at");
+        return $query->where("status", '=', 1);
     }
 
     public function author(): BelongsTo

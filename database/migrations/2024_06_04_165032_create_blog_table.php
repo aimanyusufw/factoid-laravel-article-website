@@ -41,6 +41,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('excerpt')->nullable();
             $table->string('banner')->nullable();
+            $table->decimal('score', 3, 1)->default(0);
             $table->longText('content');
             $table->boolean('status');
             $table->date('published_at')->default(now());

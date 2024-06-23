@@ -74,10 +74,19 @@ class PostResource extends Resource
                             false => 'Draft',
                             true => 'Published',
                         ]),
+                    Forms\Components\TextInput::make('score')
+                        ->required()
+                        ->numeric()
+                        ->default(5)
+                        ->inputMode('decimal')
+                        ->step(0.1) // This sets the step for decimal places
+                        ->rules('numeric|min:0|max:99.9') // Laravel validation rules for decimals
+                        ->inputMode("decimal")
+                        ->extraInputAttributes(['step' => '0.1']),
                     Forms\Components\Placeholder::make("Created at")
                         ->content(fn (?Post $record): string => $record ? $record->created_at->diffForHumans() : "-"),
                     Forms\Components\Placeholder::make("Upated at")
-                        ->content(fn (?Post $record): string => $record ? $record->updated_at->diffForHumans() : "-")
+                        ->content(fn (?Post $record): string => $record ? $record->updated_at->diffForHumans() : "-"),
                 ])->columnSpan(1)
             ])->columns(3);
     }
@@ -100,6 +109,10 @@ class PostResource extends Resource
                     ->label('Category')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('score')
+                    ->label('Score')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\IconColumn::make('status')
                     ->boolean()
                     ->alignCenter()
@@ -115,7 +128,11 @@ class PostResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('status')
+                    ->options([
+                        false => "Draft",
+                        true => "Published"
+                    ])->attribute('status')
             ])
             ->actions([
                 //

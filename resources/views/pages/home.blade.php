@@ -1,10 +1,191 @@
 @extends('Layouts.main')
 @section('content')
-    <section class="container py-24 min-h-screen">
-        <div class="w-full px-4">
-            <h1 class="text-2xl font-inter font-bold">
-                Factoid.
-            </h1>
+    <section id="Recent Post" class="py-4">
+        <div class="container">
+            @if ($latestPost && $latestPost !== null)
+                <div class="w-full flex flex-wrap justify-between items-center">
+                    <div class="w-full md:w-1/2 px-4">
+                        <img src="{{ $latestPost->banner }}" alt="" class="rounded-lg shadow-lg">
+                    </div>
+                    <div class="w-full md:w-1/2 px-4">
+                        <div class="flex gap-4 items-center mb-4">
+                            <img src="{{ $latestPost->author->profile_picture }}" alt="{{ $latestPost->author->name }}"
+                                class="rounded-full h-10 w-10">
+                            <span class="font-inter font-medium text-sm text-secondary">{{ $latestPost->author->name }} ·
+                                {{ $latestPost->published_at->diffForHumans() }}</span>
+                        </div>
+                        <h1 class="font-inria-serif text-4xl capitalize font-bold leading-snug line-clamp-3 mb-4">
+                            {{ $latestPost->title }}
+                        </h1>
+                        <p class="font-inter text-sm text-secondary max-w-sm line-clamp-5 mb-4">{{ $latestPost->excerpt }}
+                        </p>
+                        <h5 class="text-sm text-secondary">
+                            <span class="font-bold text-black">{{ $latestPost->category->name }}</span> ·
+                            {{ $latestPost->readTime() }}
+                        </h5>
+                    </div>
+                </div>
+            @else
+                <div class="w-full min-h-screen flex justify-center items-center">
+                    <h1 class="font-bold text-3xl font-serif italic text-center">We don't ready yet</h1>
+                </div>
+            @endif
+        </div>
+    </section>
+    <div class="py-8" id="Popular Post">
+        <div class="container">
+            @if ($popularPosts && $popularPosts->count() == 3)
+                <div class="w-full px-4 mb-12 flex justify-between items-baseline">
+                    <h1 class="font-bold text-2xl font-inria-serif">Popular News</h1>
+                    <a href="/featured" class="text-xs underline font-medium">Show All</a>
+                </div>
+                <div class="w-full flex flex-wrap justify-between items-center">
+                    <div class="w-full md:w-[65%] px-4">
+                        <img src="{{ $popularPosts[0]->banner }}" alt="" class="rounded-lg shadow-lg mb-5">
+                        <div class="flex gap-4 items-center mb-4">
+                            <img src="{{ $popularPosts[0]->author->profile_picture }}"
+                                alt="{{ $popularPosts[0]->author->name }}" class="rounded-full h-10 w-10">
+                            <span
+                                class="font-inter font-medium text-sm text-secondary">{{ $popularPosts[0]->author->name }}
+                                ·
+                                {{ $popularPosts[0]->published_at->diffForHumans() }}</span>
+                        </div>
+                        <h1 class="font-inria-serif text-4xl capitalize font-bold leading-snug line-clamp-3 mb-4">
+                            {{ $popularPosts[0]->title }}
+                        </h1>
+                        <p class="font-inter text-sm text-secondary max-w-sm line-clamp-5 mb-4">
+                            {{ $popularPosts[0]->excerpt }}
+                        </p>
+                        <h5 class="text-sm text-secondary">
+                            <span class="font-bold text-black">{{ $popularPosts[0]->category->name }}</span> ·
+                            {{ $popularPosts[0]->readTime() }}
+                        </h5>
+                    </div>
+                    <div class="w-full md:w-[35%] px-4 flex flex-col justify-between gap-6">
+                        @foreach ($popularPosts->skip(1) as $post)
+                            <div class="flex flex-col gap-4">
+                                <img src="{{ $post->banner }}" alt="{{ $post->title }}" class="rounded-md shadow-lg">
+                                <h1 class="font-bold font-inria-serif text-xl">{{ $post->title }}</h1>
+                                <h5 class="text-sm text-secondary">
+                                    <span class="font-bold text-black">{{ $post->category->name }}</span> ·
+                                    {{ $post->readTime() }}
+                                </h5>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        </div>
+    </div>
+    <div class="py-8" id="Recent Post">
+        <div class="container">
+            @if ($recentPosts && $recentPosts->count() == 3)
+                <div class="w-full px-4 mb-12 flex justify-between items-baseline">
+                    <h1 class="font-bold text-2xl font-inria-serif">Recent News</h1>
+                    <a href="/recent-posts" class="text-xs underline font-medium">Show All</a>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+                    @foreach ($recentPosts as $post)
+                        <div class="px-4">
+                            <img src="{{ $post->banner }}" alt="{{ $post->title }}" class="rounded-md shadow-lg mb-4">
+                            <div class="flex gap-4 items-center mb-4">
+                                <img src="{{ $popularPosts[0]->author->profile_picture }}"
+                                    alt="{{ $popularPosts[0]->author->name }}" class="rounded-full h-10 w-10">
+                                <span
+                                    class="font-inter font-medium text-sm text-secondary">{{ $popularPosts[0]->author->name }}
+                                    ·
+                                    {{ $popularPosts[0]->published_at->diffForHumans() }}</span>
+                            </div>
+                            <h5 class="text-sm text-secondary mb-4">
+                                <span class="font-bold text-black">{{ $post->category->name }}</span> ·
+                                {{ $post->readTime() }}
+                            </h5>
+                            <h1 class="font-inria-serif text-2xl capitalize font-bold leading-snug line-clamp-3 mb-4">
+                                {{ $post->title }}
+                            </h1>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+    </div>
+    <div class="py-8" id="Discovered">
+        <div class="container">
+            @if ($discovereds && $discovereds->count() == 4)
+                <div class="w-full px-4 mb-12 flex justify-between items-baseline">
+                    <h1 class="font-bold text-2xl font-inria-serif">Discovered</h1>
+                    <a href="/Discovered" class="text-xs underline font-medium">Show All</a>
+                </div>
+                <div class="px-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10">
+                    @foreach ($discovereds as $category)
+                        <a href="/category/{{ $category->slug }}">
+                            <div class="w-full h-[400px] overflow-hidden bg-center bg-cover rounded-xl relative bg-black"
+                                style="background-image: url({{ $category->thumbnail }});">
+                                <div
+                                    class="absolute bg-black bg-opacity-50 top-0 left-0 right-0 bottom-0 flex justify-center items-center">
+                                    <h1
+                                        class="z-10 font-inria-serif font-bold text-2xl text-white text-center leading-normal">
+                                        {{ $category->name }}</h1>
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+    </div>
+    <div class="py-8" id="Recent Post">
+        <div class="container">
+            @if ($randomPosts && $randomPosts->count() == 3)
+                <div class="w-full px-4 mb-12 flex justify-between items-baseline">
+                    <h1 class="font-bold text-2xl font-inria-serif">Posts You Might Like</h1>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+                    @foreach ($recentPosts as $post)
+                        <div class="px-4">
+                            <img src="{{ $post->banner }}" alt="{{ $post->title }}" class="rounded-md shadow-lg mb-4">
+                            <div class="flex gap-4 items-center mb-4">
+                                <img src="{{ $popularPosts[0]->author->profile_picture }}"
+                                    alt="{{ $popularPosts[0]->author->name }}" class="rounded-full h-10 w-10">
+                                <span
+                                    class="font-inter font-medium text-sm text-secondary">{{ $popularPosts[0]->author->name }}
+                                    ·
+                                    {{ $popularPosts[0]->published_at->diffForHumans() }}</span>
+                            </div>
+                            <h5 class="text-sm text-secondary mb-4">
+                                <span class="font-bold text-black">{{ $post->category->name }}</span> ·
+                                {{ $post->readTime() }}
+                            </h5>
+                            <h1 class="font-inria-serif text-2xl capitalize font-bold leading-snug line-clamp-3 mb-4">
+                                {{ $post->title }}
+                            </h1>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+    </div>
+    <section class="py-40" id="Suscribe">
+        <div class="container">
+            <div class="w-full flex justify-center items-center">
+                <div class="p-4">
+                    <h5 class="font-medium font-inter mb-5 md:text-center">Want to be left behind with our updates?</h5>
+                    <h1 class="md:text-center capitalize font-bold font-inria-serif text-2xl md:text-4xl mb-8">stay up to
+                        date
+                        with our
+                        newsletter</h1>
+                    <div class="flex gap-2">
+                        <div
+                            class="w-full relative flex items-center px-4 py-3 gap-2 border border-gray-300 rounded-full bg-[#F3F4F6] focus-within:ring-1 focus-within:ring-gray-600">
+                            <i data-feather="mail" class="w-5 h-5"></i>
+                            <input type="text" placeholder="Your Email Here"
+                                class="text-sm w-full placeholder:font-normal placeholder:font-inria-serif focus:outline-none focus:ring-transparent text-black rounded-e-full bg-[#F3F4F6]">
+                        </div>
+                        <button type="submit"
+                            class="px-6 py-3 bg-black text-white font-inria-serif rounded-full text-s,">Subscribe</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 @endsection
