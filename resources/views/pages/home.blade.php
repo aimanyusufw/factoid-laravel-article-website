@@ -109,7 +109,7 @@
             @endif
         </div>
     </div>
-    <div class="py-8" id="Discovered">
+    <div class="py-8" id="Discover">
         <div class="container">
             @if ($discovereds && $discovereds->count() == 4)
                 <div class="w-full px-4 mb-12 flex justify-between items-baseline">
@@ -134,23 +134,22 @@
             @endif
         </div>
     </div>
-    <div class="py-8" id="Recent Post">
+    <div class="py-8" id="Random Post">
         <div class="container">
             @if ($randomPosts && $randomPosts->count() == 3)
                 <div class="w-full px-4 mb-12 flex justify-between items-baseline">
                     <h1 class="font-bold text-2xl font-inria-serif">Posts You Might Like</h1>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-                    @foreach ($recentPosts as $post)
+                    @foreach ($randomPosts as $post)
                         <div class="px-4">
                             <img src="{{ $post->banner }}" alt="{{ $post->title }}" class="rounded-md shadow-lg mb-4">
                             <div class="flex gap-4 items-center mb-4">
-                                <img src="{{ $popularPosts[0]->author->profile_picture }}"
-                                    alt="{{ $popularPosts[0]->author->name }}" class="rounded-full h-10 w-10">
-                                <span
-                                    class="font-inter font-medium text-sm text-secondary">{{ $popularPosts[0]->author->name }}
+                                <img src="{{ $post->author->profile_picture }}" alt="{{ $post->author->name }}"
+                                    class="rounded-full h-10 w-10">
+                                <span class="font-inter font-medium text-sm text-secondary">{{ $post->author->name }}
                                     ·
-                                    {{ $popularPosts[0]->published_at->diffForHumans() }}</span>
+                                    {{ $post->published_at->diffForHumans() }}</span>
                             </div>
                             <h5 class="text-sm text-secondary mb-4">
                                 <span class="font-bold text-black">{{ $post->category->name }}</span> ·
