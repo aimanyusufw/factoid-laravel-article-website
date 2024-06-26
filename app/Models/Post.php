@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Tags\HasTags;
 
 class Post extends Model
 {
+    use HasTags;
     use HasFactory;
 
     protected $table = 'blog_posts';
@@ -26,12 +28,35 @@ class Post extends Model
         "banner_url"
     ];
 
-    public function popularPosts($take)
+    public function relatedArticles()
     {
-        return $this->with(["author", "category"])
-            ->orderBy("score", "DESC")
-            ->take($take)
+        $relatedArticles = [];
+        if (Post::all()->count() < 4) {
+            return $relatedArticles;
+        }
+
+        $relatedArticles = Post::with("author", "category")
+            ->where('id', '!=', $this->id)
+            ->withAnyTags($this->tags)
+            ->published()
+            ->latest('published_at')
+            ->take(3)
             ->get();
+
+        while ($relatedArticles->count() < 3) {
+            $randomPost = Post::with("author", "category")
+                ->published()
+                ->inRandomOrder()
+                ->where('id', '!=', $this->id)
+                ->take(3 - $relatedArticles->count())
+                ->first();
+
+            if ($randomPost && !$relatedArticles->contains('id', $randomPost->id)) {
+                $relatedArticles->push($randomPost);
+            }
+        }
+
+        return $relatedArticles;
     }
 
     public function readTime()
@@ -49,6 +74,11 @@ class Post extends Model
     public function scopePublished($query)
     {
         return $query->where("status", '=', 1);
+    }
+
+    public function getRouteKeyName()
+    {
+        return "slug";
     }
 
     public function author(): BelongsTo

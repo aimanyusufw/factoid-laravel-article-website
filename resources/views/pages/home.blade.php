@@ -5,7 +5,9 @@
             @if ($latestPost && $latestPost !== null)
                 <div class="w-full flex flex-wrap justify-between items-center">
                     <div class="w-full md:w-1/2 px-4">
-                        <img src="{{ $latestPost->banner }}" alt="" class="rounded-lg shadow-lg">
+                        <a href="/post/{{ $latestPost->slug }}">
+                            <img src="{{ $latestPost->banner_url }}" alt="" class="rounded-lg shadow-lg">
+                        </a>
                     </div>
                     <div class="w-full md:w-1/2 px-4">
                         <div class="flex gap-4 items-center mb-4">
@@ -14,13 +16,16 @@
                             <span class="font-inter font-medium text-sm text-secondary">{{ $latestPost->author->name }} ·
                                 {{ $latestPost->published_at->diffForHumans() }}</span>
                         </div>
-                        <h1 class="font-inria-serif text-4xl capitalize font-bold leading-snug line-clamp-3 mb-4">
-                            {{ $latestPost->title }}
-                        </h1>
+                        <a href="/post/{{ $latestPost->slug }}">
+                            <h1 class="font-inria-serif text-4xl capitalize font-bold leading-snug line-clamp-3 mb-4">
+                                {{ $latestPost->title }}
+                            </h1>
+                        </a>
                         <p class="font-inter text-sm text-secondary max-w-sm line-clamp-5 mb-4">{{ $latestPost->excerpt }}
                         </p>
                         <h5 class="text-sm text-secondary">
-                            <span class="font-bold text-black">{{ $latestPost->category->name }}</span> ·
+                            <a href="/category/{{ $latestPost->category->slug }}"
+                                class="font-bold text-black hover:underline">{{ $latestPost->category->name }}</a> ·
                             {{ $latestPost->readTime() }}
                         </h5>
                     </div>
@@ -37,11 +42,16 @@
             @if ($popularPosts && $popularPosts->count() == 3)
                 <div class="w-full px-4 mb-12 flex justify-between items-baseline">
                     <h1 class="font-bold text-2xl font-inria-serif">Popular News</h1>
-                    <a href="/featured" class="text-xs underline font-medium">Show All</a>
+                    <a href="/featured" class="text-xs hover:underline font-medium">
+                        Show All
+                        <i data-feather="arrow-up-right" class="inline ms-2 h-4 w-4"></i>
+                    </a>
                 </div>
-                <div class="w-full flex flex-wrap justify-between items-center">
+                <div class="w-full flex flex-wrap justify-between items-start">
                     <div class="w-full md:w-[65%] px-4">
-                        <img src="{{ $popularPosts[0]->banner }}" alt="" class="rounded-lg shadow-lg mb-5">
+                        <a href="/post/{{ $popularPosts[0]->slug }}">
+                            <img src="{{ $popularPosts[0]->banner_url }}" alt="" class="rounded-lg shadow-lg mb-5">
+                        </a>
                         <div class="flex gap-4 items-center mb-4">
                             <img src="{{ $popularPosts[0]->author->profile_picture }}"
                                 alt="{{ $popularPosts[0]->author->name }}" class="rounded-full h-10 w-10">
@@ -50,24 +60,33 @@
                                 ·
                                 {{ $popularPosts[0]->published_at->diffForHumans() }}</span>
                         </div>
-                        <h1 class="font-inria-serif text-4xl capitalize font-bold leading-snug line-clamp-3 mb-4">
-                            {{ $popularPosts[0]->title }}
-                        </h1>
+                        <a href="/post/{{ $popularPosts[0]->slug }}">
+                            <h1 class="font-inria-serif text-4xl capitalize font-bold leading-snug line-clamp-3 mb-4">
+                                {{ $popularPosts[0]->title }}
+                            </h1>
+                        </a>
                         <p class="font-inter text-sm text-secondary max-w-sm line-clamp-5 mb-4">
                             {{ $popularPosts[0]->excerpt }}
                         </p>
                         <h5 class="text-sm text-secondary">
-                            <span class="font-bold text-black">{{ $popularPosts[0]->category->name }}</span> ·
+                            <a href="/category/{{ $popularPosts[0]->category->name }}"
+                                class="font-bold text-black hover:underline">{{ $popularPosts[0]->category->name }}</a> ·
                             {{ $popularPosts[0]->readTime() }}
                         </h5>
                     </div>
                     <div class="w-full md:w-[35%] px-4 flex flex-col justify-between gap-6">
                         @foreach ($popularPosts->skip(1) as $post)
                             <div class="flex flex-col gap-4">
-                                <img src="{{ $post->banner }}" alt="{{ $post->title }}" class="rounded-md shadow-lg">
-                                <h1 class="font-bold font-inria-serif text-xl">{{ $post->title }}</h1>
+                                <a href="/post/{{ $post->slug }}">
+                                    <img src="{{ $post->banner_url }}" alt="{{ $post->title }}"
+                                        class="rounded-md shadow-lg">
+                                </a>
+                                <a href="/post/{{ $post->slug }}">
+                                    <h1 class="font-bold font-inria-serif text-xl">{{ $post->title }}</h1>
+                                </a>
                                 <h5 class="text-sm text-secondary">
-                                    <span class="font-bold text-black">{{ $post->category->name }}</span> ·
+                                    <a href="/category/{{ $post->category->name }}"
+                                        class="font-bold text-black hover:underline">{{ $post->category->name }}</a> ·
                                     {{ $post->readTime() }}
                                 </h5>
                             </div>
@@ -82,12 +101,18 @@
             @if ($recentPosts && $recentPosts->count() == 3)
                 <div class="w-full px-4 mb-12 flex justify-between items-baseline">
                     <h1 class="font-bold text-2xl font-inria-serif">Recent News</h1>
-                    <a href="/recent-posts" class="text-xs underline font-medium">Show All</a>
+                    <a href="/recent-posts" class="text-xs hover:underline font-medium">
+                        Show All
+                        <i data-feather="arrow-up-right" class="inline ms-2 h-4 w-4"></i>
+                    </a>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
                     @foreach ($recentPosts as $post)
                         <div class="px-4">
-                            <img src="{{ $post->banner }}" alt="{{ $post->title }}" class="rounded-md shadow-lg mb-4">
+                            <a href="/post/{{ $post->slug }}">
+                                <img src="{{ $post->banner_url }}" alt="{{ $post->title }}"
+                                    class="rounded-md shadow-lg mb-4">
+                            </a>
                             <div class="flex gap-4 items-center mb-4">
                                 <img src="{{ $popularPosts[0]->author->profile_picture }}"
                                     alt="{{ $popularPosts[0]->author->name }}" class="rounded-full h-10 w-10">
@@ -97,12 +122,15 @@
                                     {{ $popularPosts[0]->published_at->diffForHumans() }}</span>
                             </div>
                             <h5 class="text-sm text-secondary mb-4">
-                                <span class="font-bold text-black">{{ $post->category->name }}</span> ·
+                                <a href="/category/{{ $post->category->name }}"
+                                    class="font-bold text-black hover:underline">{{ $post->category->name }}</a> ·
                                 {{ $post->readTime() }}
                             </h5>
-                            <h1 class="font-inria-serif text-2xl capitalize font-bold leading-snug line-clamp-3 mb-4">
-                                {{ $post->title }}
-                            </h1>
+                            <a href="/post/{{ $post->slug }}">
+                                <h1 class="font-inria-serif text-2xl capitalize font-bold leading-snug line-clamp-3 mb-4">
+                                    {{ $post->title }}
+                                </h1>
+                            </a>
                         </div>
                     @endforeach
                 </div>
@@ -143,7 +171,10 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
                     @foreach ($randomPosts as $post)
                         <div class="px-4">
-                            <img src="{{ $post->banner }}" alt="{{ $post->title }}" class="rounded-md shadow-lg mb-4">
+                            <a href="/post/{{ $post->slug }}">
+                                <img src="{{ $post->banner_url }}" alt="{{ $post->title }}"
+                                    class="rounded-md shadow-lg mb-4">
+                            </a>
                             <div class="flex gap-4 items-center mb-4">
                                 <img src="{{ $post->author->profile_picture }}" alt="{{ $post->author->name }}"
                                     class="rounded-full h-10 w-10">
@@ -152,12 +183,15 @@
                                     {{ $post->published_at->diffForHumans() }}</span>
                             </div>
                             <h5 class="text-sm text-secondary mb-4">
-                                <span class="font-bold text-black">{{ $post->category->name }}</span> ·
+                                <a href="/category/{{ $post->category->name }}"
+                                    class="font-bold text-black hover:underline">{{ $post->category->name }}</a> ·
                                 {{ $post->readTime() }}
                             </h5>
-                            <h1 class="font-inria-serif text-2xl capitalize font-bold leading-snug line-clamp-3 mb-4">
-                                {{ $post->title }}
-                            </h1>
+                            <a href="/post/{{ $post->slug }}">
+                                <h1 class="font-inria-serif text-2xl capitalize font-bold leading-snug line-clamp-3 mb-4">
+                                    {{ $post->title }}
+                                </h1>
+                            </a>
                         </div>
                     @endforeach
                 </div>

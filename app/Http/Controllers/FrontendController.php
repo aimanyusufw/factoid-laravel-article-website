@@ -67,7 +67,7 @@ class FrontendController extends Controller
 
     public function recentPosts()
     {
-        $posts = Post::with("author", "category")->published()->latest()->paginate(9);
+        $posts = Post::with("author", "category")->published()->orderBy("published_at", "DESC")->paginate(9);
         $icon = "clock";
         $title = "Fresh Off the Press";
         $description = "Stay up-to-date with our newest blog posts. From breaking news to the latest trends and insights, explore the freshest content and never miss out on what's happening. Dive into our latest updates and stay informed!";
@@ -100,6 +100,14 @@ class FrontendController extends Controller
             "title" => $title,
             "description" => $description,
             "posts" => $posts,
+        ]);
+    }
+
+    public function post(Post $post)
+    {
+        return view("pages.posts.view", [
+            "popularPosts" => Post::with("author", "category")->published()->orderBy("score", "DESC")->where('id', '!=', $post->id)->take(5)->get(),
+            "post" => $post
         ]);
     }
 }

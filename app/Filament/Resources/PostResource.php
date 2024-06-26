@@ -64,6 +64,7 @@ class PostResource extends Resource
                         ->label("Author")
                         ->relationship(name: "author", titleAttribute: "name")
                         ->searchable(),
+                    Forms\Components\SpatieTagsInput::make('tags')
                 ])->columns(["sm" => 2])->columnSpan(2),
                 Forms\Components\Section::make("Additional data")->description("Some information or data that you might want to configure")->schema([
                     Forms\Components\DatePicker::make('published_at')->default(now()),

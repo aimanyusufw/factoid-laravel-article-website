@@ -18,14 +18,20 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
                     @foreach ($posts as $post)
                         <div class="p-4">
-                            <img src="{{ $post->banner }}" alt="{{ $post->title }}" class="rounded-md shadow-md mb-4">
+                            <a href="/post/{{ $post->slug }}">
+                                <img src="{{ $post->banner_url }}" alt="{{ $post->title }}"
+                                    class="rounded-md shadow-md mb-4">
+                            </a>
                             <h5 class="text-sm text-secondary mb-4">
-                                <span class="font-bold text-black">{{ $post->category->name }}</span> ·
+                                <a href="/category/{{ $post->category->slug }}"
+                                    class="font-bold text-black hover:underline">{{ $post->category->name }}</a> ·
                                 {{ $post->readTime() }}
                             </h5>
-                            <h1 class="font-inria-serif text-2xl capitalize font-bold leading-snug line-clamp-3 mb-4">
-                                {{ $post->title }}
-                            </h1>
+                            <a href="/post/{{ $post->slug }}">
+                                <h1 class="font-inria-serif text-2xl capitalize font-bold leading-snug line-clamp-3 mb-4">
+                                    {{ $post->title }}
+                                </h1>
+                            </a>
                             <div class="flex gap-4 items-center mb-4">
                                 <img src="{{ $post->author->profile_picture }}" alt="{{ $post->author->name }}"
                                     class="rounded-full h-10 w-10">
