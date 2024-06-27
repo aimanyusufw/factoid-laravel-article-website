@@ -106,7 +106,7 @@
                         <i data-feather="arrow-up-right" class="inline ms-2 h-4 w-4"></i>
                     </a>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                     @foreach ($recentPosts as $post)
                         <div class="px-4">
                             <a href="/post/{{ $post->slug }}">
@@ -142,7 +142,10 @@
             @if ($discovereds && $discovereds->count() == 4)
                 <div class="w-full px-4 mb-12 flex justify-between items-baseline">
                     <h1 class="font-bold text-2xl font-inria-serif">Discovered</h1>
-                    <a href="/Discovered" class="text-xs underline font-medium">Show All</a>
+                    <a href="/discover" class="text-xs hover:underline font-medium">
+                        Show All
+                        <i data-feather="arrow-up-right" class="inline ms-2 h-4 w-4"></i>
+                    </a>
                 </div>
                 <div class="px-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10">
                     @foreach ($discovereds as $category)
@@ -168,7 +171,7 @@
                 <div class="w-full px-4 mb-12 flex justify-between items-baseline">
                     <h1 class="font-bold text-2xl font-inria-serif">Posts You Might Like</h1>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                     @foreach ($randomPosts as $post)
                         <div class="px-4">
                             <a href="/post/{{ $post->slug }}">

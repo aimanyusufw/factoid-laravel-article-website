@@ -14,15 +14,18 @@
                 </button>
                 <div class="hidden md:flex items-center gap-5 font-medium text-sm text-[#64748B]">
                     <a href="/" class="{{ request()->is('/') ? 'text-black' : '' }}">Home</a>
-                    <a href="/discover" class="{{ request()->is('discover') ? 'text-black' : '' }}">Discover</a>
+                    <a href="/discover"
+                        class="{{ request()->is('discover/*') || request()->is('discover') ? 'text-black' : '' }}">Discover</a>
                     <a href="/recent-posts" class="{{ request()->is('recent-posts') ? 'text-black' : '' }}">Recent</a>
                     <a href="/featured" class="{{ request()->is('featured') ? 'text-black' : '' }}">Featured</a>
-                    <div
-                        class="relative flex items-center px-3   py-2 gap-2 border border-gray-300 rounded-full bg-[#F3F4F6] focus-within:ring-1 focus-within:ring-gray-600">
+                    <form method="GET" action="/results"
+                        class="relative flex items-center px-3   py-2 gap-2 border border-gray-300 rounded-full bg-[#F3F4F6] {{ request()->is('results') ? 'ring-1 ring-gray-600' : '' }} focus-within:ring-1 focus-within:ring-gray-600 ">
                         <i data-feather="search" class="w-4 h-4"></i>
-                        <input type="text" placeholder="Search..."
+                        <input type="search" placeholder="Search..." name="query" id="query"
+                            value="{{ request('query') }}"
                             class="text-sm placeholder:font-normal focus:outline-none focus:ring-transparent text-black rounded-e-full bg-[#F3F4F6]">
-                    </div>
+                        <input type="submit" hidden>
+                    </form>
                 </div>
             </div>
         </div>

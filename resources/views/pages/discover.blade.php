@@ -22,7 +22,7 @@
             @if ($discovers && $discovers->count() > 1)
                 <div class="px-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10">
                     @foreach ($discovers as $category)
-                        <a href="/category/{{ $category->slug }}">
+                        <a href="/discover/{{ $category->slug }}">
                             <div class="w-full h-[400px] overflow-hidden bg-center bg-cover rounded-xl relative bg-black"
                                 style="background-image: url({{ $category->thumbnail }});">
                                 <div

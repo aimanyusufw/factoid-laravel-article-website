@@ -22,6 +22,11 @@ class Category extends Model
 
     protected $appends = ["thumbnail_url"];
 
+    public function getRouteKeyName()
+    {
+        return "slug";
+    }
+
     public function thumbnailUrl(): Attribute
     {
         return Attribute::get(fn () => $this->thumbnail ? asset(Storage::url($this->thumbnail)) : "");

@@ -35,7 +35,7 @@
                                             class="line-clamp-1 font-bold text-2xl font-inria-serif">{{ $post->title }}
                                         </a>
                                         <span class="font-inter text-sm  text-secondary"><a
-                                                href="/category/{{ $post->category->slug }}"
+                                                href="/discover/{{ $post->category->slug }}"
                                                 class="hover:underline text-black">{{ $post->category->name }}</a>
                                             · {{ $post->readTime() }}</span>
                                     </div>

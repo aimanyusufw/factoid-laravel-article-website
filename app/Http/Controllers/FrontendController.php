@@ -11,7 +11,7 @@ class FrontendController extends Controller
     public function home()
     {
         $latestPost = Post::with(["author", "category"])
-            ->orderBy("published_at", "DESC")
+            ->recent()
             ->published()
             ->first();
 
@@ -31,7 +31,7 @@ class FrontendController extends Controller
         $excludeIds = array_merge($excludeIds, $popularPostIds);
 
         $recentPosts = Post::with(["author", "category"])
-            ->orderBy("published_at", "DESC")
+            ->recent()
             ->published()
             ->whereNotIn('id', $excludeIds)
             ->take(3)
@@ -56,10 +56,6 @@ class FrontendController extends Controller
     {
         $discovers = Category::latest()->paginate(5);
 
-        if ($discovers->count() < 1) {
-            return redirect("/");
-        }
-
         return view("pages.discover", [
             "discovers" => $discovers
         ]);
@@ -67,14 +63,10 @@ class FrontendController extends Controller
 
     public function recentPosts()
     {
-        $posts = Post::with("author", "category")->published()->orderBy("published_at", "DESC")->paginate(9);
+        $posts = Post::with("author", "category")->published()->recent()->paginate(9);
         $icon = "clock";
         $title = "Fresh Off the Press";
         $description = "Stay up-to-date with our newest blog posts. From breaking news to the latest trends and insights, explore the freshest content and never miss out on what's happening. Dive into our latest updates and stay informed!";
-
-        if ($posts->count() < 1) {
-            return redirect("/");
-        }
 
         return view("pages.posts.index", [
             "icon" => $icon,
@@ -91,10 +83,6 @@ class FrontendController extends Controller
         $title = "Top Picks Just for You";
         $description = "Uncover the gems of our blog with these handpicked, standout posts. Whether it's the latest trends, in-depth insights, or captivating stories, our featured articles offer the best of the best. Dive into our top picks and enjoy the journey!";
 
-        if ($posts->count() < 1) {
-            return redirect("/");
-        }
-
         return view("pages.posts.index", [
             "icon" => $icon,
             "title" => $title,
@@ -108,6 +96,48 @@ class FrontendController extends Controller
         return view("pages.posts.view", [
             "popularPosts" => Post::with("author", "category")->published()->orderBy("score", "DESC")->where('id', '!=', $post->id)->take(5)->get(),
             "post" => $post
+        ]);
+    }
+
+    public function category(Category $category)
+    {
+        return view("pages.posts.index", [
+            "icon" => null,
+            "title" => "Explore $category->name Insights",
+            "description" => "Unlock a wealth of knowledge in $category->name. Our handpicked articles bring you the latest trends, expert advice, and engaging stories. Whether you're a novice or a seasoned enthusiast, find inspiration and deepen your understanding with our $category->name posts.",
+            "posts" => Post::with("author", "category")->published()->where("blog_category_id", $category->id)->recent()->paginate(9)
+        ]);
+    }
+
+    public function search()
+    {
+        $query = request("query");
+
+        $posts = Post::with(['category', 'author'])
+            ->published()
+            ->recent()
+            ->where('title', 'LIKE', "%{$query}%")
+            ->orWhere('content', 'LIKE', "%{$query}%")
+            ->orWhereHas('category', function ($q) use ($query) {
+                $q->where('name', 'LIKE', "%{$query}%");
+            })
+            ->orWhereHas('author', function ($q) use ($query) {
+                $q->where('name', 'LIKE', "%{$query}%");
+            })
+            ->orWhereHas('tags', function ($q) use ($query) {
+                $q->where('name', 'LIKE', "%{$query}%");
+            })
+            ->paginate(10);
+
+        $posts->withPath("/results?query=$query");
+
+        $categories = Category::where("name", "LIKE", "%{$query}%")->orWhere("description", "LIKE", "%{$query}%")->orWhereHas('posts', function ($q) use ($query) {
+            $q->where('title', 'LIKE', "%{$query}%")->orWhere('content', 'LIKE', "%{$query}%");
+        })->get();
+
+        return view("pages.search", [
+            "posts" => $posts,
+            "categories" => $categories
         ]);
     }
 }

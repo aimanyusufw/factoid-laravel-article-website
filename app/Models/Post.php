@@ -59,6 +59,11 @@ class Post extends Model
         return $relatedArticles;
     }
 
+    public function scopeRecent($query)
+    {
+        return $query->orderBy("published_at", "DESC");
+    }
+
     public function readTime()
     {
         $readingTime = ceil(str_word_count(strip_tags($this->content)) / 250);

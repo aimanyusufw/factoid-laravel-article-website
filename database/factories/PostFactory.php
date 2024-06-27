@@ -23,10 +23,10 @@ class PostFactory extends Factory
             'blog_author_id' => 1,
             'blog_category_id' => rand(1, 6),
             'excerpt' => fake()->paragraph(2),
-            'banner' => "https://images.unsplash.com/photo-1718634353354-fa2fc07e3080?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            'banner' => "posts/01J175J99SZ5ZN9HPJEGF3DZGQ.jpg",
             'score' => rand(1, 10),
-            "content" => fake()->text(),
-            'status' => 1,
+            "content" => fake()->paragraphs(20, true),
+            'status' => true,
             'published_at' => fake()->date('Y-m-d')
         ];
     }
