@@ -89,7 +89,7 @@
                         @foreach ($categories as $category)
                             <a href="/discover/{{ $category->slug }}">
                                 <div class="w-full mb-4 overflow-hidden bg-center bg-cover rounded-xl"
-                                    style="background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ $category->thumbnail }});">
+                                    style="background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ $category->thumbnail_url }});">
                                     <h1
                                         class="z-10 font-inria-serif font-bold text-2xl text-white text-center leading-normal py-4">
                                         {{ $category->name }}

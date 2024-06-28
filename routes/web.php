@@ -10,4 +10,7 @@ Route::get('/recent-posts', [FrontendController::class, 'recentPosts']);
 Route::get('/featured', [FrontendController::class, 'featured']);
 Route::get('/post/{post}', [FrontendController::class, 'post']);
 
+// Search
 Route::get('/results', [FrontendController::class, 'search']);
+// Generate Sitemap
+Route::get('/sitemap-generate', [FrontendController::class, 'generateSitemap']);

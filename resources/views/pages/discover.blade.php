@@ -24,7 +24,7 @@
                     @foreach ($discovers as $category)
                         <a href="/discover/{{ $category->slug }}">
                             <div class="w-full h-[400px] overflow-hidden bg-center bg-cover rounded-xl relative bg-black"
-                                style="background-image: url({{ $category->thumbnail }});">
+                                style="background-image: url({{ $category->thumbnail_url }});">
                                 <div
                                     class="absolute bg-black bg-opacity-50 top-0 left-0 right-0 bottom-0 flex justify-center items-center">
                                     <h1
