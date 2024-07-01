@@ -13,7 +13,7 @@
                     </button>
                 </div>
                 <div class="flex gap-4 items-center p-4 font-inter font-medium text-sm text-secondary ">
-                    <img src="{{ $post->author->profile_picture }}" alt="{{ $post->author->name }}"
+                    <img src="{{ $post->author->profile_picture_url }}" alt="{{ $post->author->name }}"
                         class="rounded-full h-10 w-10">
                     <span class="font-inter font-medium text-sm text-secondary">{{ $post->author->name }}
                         ·
@@ -69,7 +69,7 @@
                             </h1>
                         </a>
                         <div class="flex gap-4 items-center mb-4">
-                            <img src="{{ $post->author->profile_picture }}" alt="{{ $post->author->name }}"
+                            <img src="{{ $post->author->profile_picture_url }}" alt="{{ $post->author->name }}"
                                 class="rounded-full h-10 w-10">
                             <span class="font-inter font-medium text-sm text-secondary">{{ $post->author->name }}
                                 ·

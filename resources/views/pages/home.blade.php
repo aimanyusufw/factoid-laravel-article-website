@@ -11,7 +11,7 @@
                     </div>
                     <div class="w-full md:w-1/2 px-4">
                         <div class="flex gap-4 items-center mb-4">
-                            <img src="{{ $latestPost->author->profile_picture }}" alt="{{ $latestPost->author->name }}"
+                            <img src="{{ $latestPost->author->profile_picture_url }}" alt="{{ $latestPost->author->name }}"
                                 class="rounded-full h-10 w-10">
                             <span class="font-inter font-medium text-sm text-secondary">{{ $latestPost->author->name }} ·
                                 {{ $latestPost->published_at->diffForHumans() }}</span>
@@ -53,7 +53,7 @@
                             <img src="{{ $popularPosts[0]->banner_url }}" alt="" class="rounded-lg shadow-lg mb-5">
                         </a>
                         <div class="flex gap-4 items-center mb-4">
-                            <img src="{{ $popularPosts[0]->author->profile_picture }}"
+                            <img src="{{ $popularPosts[0]->author->profile_picture_url }}"
                                 alt="{{ $popularPosts[0]->author->name }}" class="rounded-full h-10 w-10">
                             <span
                                 class="font-inter font-medium text-sm text-secondary">{{ $popularPosts[0]->author->name }}
@@ -114,7 +114,7 @@
                                     class="rounded-md shadow-lg mb-4">
                             </a>
                             <div class="flex gap-4 items-center mb-4">
-                                <img src="{{ $popularPosts[0]->author->profile_picture }}"
+                                <img src="{{ $popularPosts[0]->author->profile_picture_url }}"
                                     alt="{{ $popularPosts[0]->author->name }}" class="rounded-full h-10 w-10">
                                 <span
                                     class="font-inter font-medium text-sm text-secondary">{{ $popularPosts[0]->author->name }}
@@ -179,7 +179,7 @@
                                     class="rounded-md shadow-lg mb-4">
                             </a>
                             <div class="flex gap-4 items-center mb-4">
-                                <img src="{{ $post->author->profile_picture }}" alt="{{ $post->author->name }}"
+                                <img src="{{ $post->author->profile_picture_url }}" alt="{{ $post->author->name }}"
                                     class="rounded-full h-10 w-10">
                                 <span class="font-inter font-medium text-sm text-secondary">{{ $post->author->name }}
                                     ·
