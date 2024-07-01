@@ -4,7 +4,7 @@
         <div class="container">
             @if ($latestPost && $latestPost !== null)
                 <div class="w-full flex flex-wrap justify-between items-center">
-                    <div class="w-full md:w-1/2 px-4">
+                    <div class="w-full md:w-1/2 p-4 ">
                         <a href="/post/{{ $latestPost->slug }}">
                             <img src="{{ $latestPost->banner_url }}" alt="" class="rounded-lg shadow-lg">
                         </a>

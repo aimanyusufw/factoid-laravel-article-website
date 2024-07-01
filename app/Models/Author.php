@@ -31,7 +31,7 @@ class Author extends Model
 
     public function profilePictureUrl(): Attribute
     {
-        return Attribute::get(fn () => $this->photo ? asset(Storage::url($this->photo)) : "");
+        return Attribute::get(fn () => $this->profile_picture ? asset(Storage::url($this->profile_picture)) : "");
     }
 
     public function posts(): HasMany
