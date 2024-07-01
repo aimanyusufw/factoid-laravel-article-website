@@ -56,14 +56,16 @@ class PostResource extends Resource
                     Forms\Components\RichEditor::make('content')
                         ->required()
                         ->columnSpanFull(),
-                    Forms\Components\Select::make('blog_author_id')
+                    Forms\Components\Select::make('blog_category_id')
                         ->label('Category')
                         ->relationship(name: 'category', titleAttribute: 'name')
-                        ->searchable(),
-                    Forms\Components\Select::make('blog_category_id')
+                        ->searchable()
+                        ->required(),
+                    Forms\Components\Select::make('blog_author_id')
                         ->label("Author")
                         ->relationship(name: "author", titleAttribute: "name")
-                        ->searchable(),
+                        ->searchable()
+                        ->required(),
                     Forms\Components\SpatieTagsInput::make('tags')
                 ])->columns(["sm" => 2])->columnSpan(2),
                 Forms\Components\Section::make("Additional data")->description("Some information or data that you might want to configure")->schema([
