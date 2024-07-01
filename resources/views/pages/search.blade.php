@@ -25,7 +25,7 @@
                                 </a>
                                 <div>
                                     <h5 class="text-sm text-secondary mb-4">
-                                        <a href="/category/{{ $post->category->slug }}"
+                                        <a href="/discover/{{ $post->category->slug }}"
                                             class="font-bold text-black hover:underline">{{ $post->category->name }}</a>
                                         ·
                                         {{ $post->readTime() }}

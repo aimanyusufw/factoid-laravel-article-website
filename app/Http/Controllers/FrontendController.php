@@ -225,13 +225,13 @@ class FrontendController extends Controller
                 ->setLastModificationDate(Carbon::create('2024', '5', '25')));
 
         Post::all()->each(function (Post $post) use ($sitemap) {
-            $sitemap->add(Url::create("blog/" . $post->slug)
+            $sitemap->add(Url::create("post/" . $post->slug)
                 ->setLastModificationDate($post->updated_at)
                 ->addImage($post->bannerUrl));
         });
 
         Category::all()->each(function (Category $category) use ($sitemap) {
-            $sitemap->add(Url::create("blog/" . $category->slug)
+            $sitemap->add(Url::create("discover/" . $category->slug)
                 ->setLastModificationDate($category->updated_at)
                 ->addImage($category->thumbnailUrl));
         });

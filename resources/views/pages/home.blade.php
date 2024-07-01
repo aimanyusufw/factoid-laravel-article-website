@@ -24,7 +24,7 @@
                         <p class="font-inter text-sm text-secondary max-w-sm line-clamp-2 mb-4">{{ $latestPost->excerpt }}
                         </p>
                         <h5 class="text-sm text-secondary">
-                            <a href="/category/{{ $latestPost->category->slug }}"
+                            <a href="/discover/{{ $latestPost->category->slug }}"
                                 class="font-bold text-black hover:underline">{{ $latestPost->category->name }}</a> ·
                             {{ $latestPost->readTime() }}
                         </h5>
@@ -69,7 +69,7 @@
                             {{ $popularPosts[0]->excerpt }}
                         </p>
                         <h5 class="text-sm text-secondary">
-                            <a href="/category/{{ $popularPosts[0]->category->name }}"
+                            <a href="/discover/{{ $popularPosts[0]->category->name }}"
                                 class="font-bold text-black hover:underline">{{ $popularPosts[0]->category->name }}</a> ·
                             {{ $popularPosts[0]->readTime() }}
                         </h5>
@@ -85,7 +85,7 @@
                                     <h1 class="font-bold font-inria-serif text-xl">{{ $post->title }}</h1>
                                 </a>
                                 <h5 class="text-sm text-secondary">
-                                    <a href="/category/{{ $post->category->name }}"
+                                    <a href="/discover/{{ $post->category->name }}"
                                         class="font-bold text-black hover:underline">{{ $post->category->name }}</a> ·
                                     {{ $post->readTime() }}
                                 </h5>
@@ -122,7 +122,7 @@
                                     {{ $popularPosts[0]->published_at->diffForHumans() }}</span>
                             </div>
                             <h5 class="text-sm text-secondary mb-4">
-                                <a href="/category/{{ $post->category->name }}"
+                                <a href="/discover/{{ $post->category->name }}"
                                     class="font-bold text-black hover:underline">{{ $post->category->name }}</a> ·
                                 {{ $post->readTime() }}
                             </h5>
@@ -186,7 +186,7 @@
                                     {{ $post->published_at->diffForHumans() }}</span>
                             </div>
                             <h5 class="text-sm text-secondary mb-4">
-                                <a href="/category/{{ $post->category->name }}"
+                                <a href="/discover/{{ $post->category->name }}"
                                     class="font-bold text-black hover:underline">{{ $post->category->name }}</a> ·
                                 {{ $post->readTime() }}
                             </h5>

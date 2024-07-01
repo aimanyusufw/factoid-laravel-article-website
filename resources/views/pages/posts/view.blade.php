@@ -18,7 +18,7 @@
                     <span class="font-inter font-medium text-sm text-secondary">{{ $post->author->name }}
                         ·
                         {{ $post->published_at->diffForHumans() }}</span> ·
-                    <a href="/category/{{ $post->category->slug }}"
+                    <a href="/discvoer/{{ $post->category->slug }}"
                         class="font-bold text-black hover:underline">{{ $post->category->name }}</a>·
                     {{ $post->readTime() }}
                 </div>
@@ -59,7 +59,7 @@
                                 class="rounded-md shadow-md mb-4">
                         </a>
                         <h5 class="text-sm text-secondary mb-4">
-                            <a href="/category/{{ $post->category->slug }}"
+                            <a href="/discvoer/{{ $post->category->slug }}"
                                 class="font-bold text-black hover:underline">{{ $post->category->name }}</a> ·
                             {{ $post->readTime() }}
                         </h5>
