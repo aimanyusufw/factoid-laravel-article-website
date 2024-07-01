@@ -116,6 +116,9 @@ class FrontendController extends Controller
 
     public function post(Post $post)
     {
+        if (!$post->status) {
+            return abort(404);
+        }
         // SEO Meta Tags
         SEOMeta::setTitle($post->title);
         SEOMeta::setDescription($post->excerpt);

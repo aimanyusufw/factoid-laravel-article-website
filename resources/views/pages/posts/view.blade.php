@@ -3,7 +3,9 @@
     <section class="py-4 min-h-screen">
         <div class="container">
             <article class="w-full">
-                <img src="{{ $post->banner_url }}" alt="{{ $post->title }}" class="rounded-md m-4">
+                <div class="p-4">
+                    <img src="{{ $post->banner_url }}" alt="{{ $post->title }}" class="rounded-lg w-full">
+                </div>
                 <div class="flex items-center justify-between p-4">
                     <h1 class="font-bold text-4xl font-inria-serif">{{ $post->title }}</h1>
                     <button>

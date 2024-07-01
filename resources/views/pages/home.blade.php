@@ -21,7 +21,7 @@
                                 {{ $latestPost->title }}
                             </h1>
                         </a>
-                        <p class="font-inter text-sm text-secondary max-w-sm line-clamp-5 mb-4">{{ $latestPost->excerpt }}
+                        <p class="font-inter text-sm text-secondary max-w-sm line-clamp-2 mb-4">{{ $latestPost->excerpt }}
                         </p>
                         <h5 class="text-sm text-secondary">
                             <a href="/category/{{ $latestPost->category->slug }}"

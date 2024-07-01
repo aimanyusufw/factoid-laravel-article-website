@@ -26,7 +26,7 @@
                                 </h5>
                                 <a href="/post/{{ $post->slug }}">
                                     <h1
-                                        class="font-inria-serif text-2xl capitalize font-bold leading-snug line-clamp-3 mb-4">
+                                        class="font-inria-serif text-2xl capitalize font-bold leading-snug line-clamp-2 mb-4">
                                         {{ $post->title }}
                                     </h1>
                                 </a>
