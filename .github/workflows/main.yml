@@ -25,10 +25,7 @@ jobs:
 
     - name: Remove Composer dev dependencies
       run: composer install --no-dev --optimize-autoloader --prefer-dist --no-interaction --no-scripts
-
-    - name: Clear cache
-      run: php artisan optimize:clear
-
+      
     - name: Install Node.js and npm
       uses: actions/setup-node@v2
       with:
