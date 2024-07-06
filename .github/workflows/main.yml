@@ -23,9 +23,6 @@ jobs:
     - name: Install Composer dependencies
       run: composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
 
-    - name: Generate Laravel Application key
-      run: php artisan key:generate
-
     - name: Remove Composer dev dependencies
       run: composer install --no-dev --optimize-autoloader --prefer-dist --no-interaction --no-scripts
 
