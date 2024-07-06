@@ -1,45 +1,45 @@
-name: Laravel CI
+name: 🚀 Deploy to cPanel
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main  
 
 jobs:
-  laravel_tests:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Set up PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2'
-        extensions: mbstring, pdo, xml, ctype, json, tokenizer, bcmath, zip, gd, curl, sqlite3
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, pdo, xml, ctype, json, tokenizer, bcmath, zip, gd, curl, sqlite3
 
-    - name: Install Composer dependencies
-      run: composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+      - name: Install Composer Dependencies
+        run: composer install --no-dev --optimize-autoloader
 
-    - name: Remove Composer dev dependencies
-      run: composer install --no-dev --optimize-autoloader --prefer-dist --no-interaction --no-scripts
-      
-    - name: Install Node.js and npm
-      uses: actions/setup-node@v2
-      with:
-        node-version: '21'
+      - name: Generate Optimized Laravel Artifacts
+        run: php artisan optimize
 
-    - name: Install npm dependencies
-      run: npm install
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: '21'
 
-    - name: Run Laravel Mix
-      run: npm run build
+      - name: SSH and Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.CPANEL_HOST }}
+          username: ${{ secrets.CPANEL_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}  # Masukkan private key SSH dari server GitHub Actions
+          script: |
+            cd /home/aimany/portfolio-website
+            git pull origin main  
+            composer install --no-dev --optimize-autoloader
+            npm install
+            npm run build
 
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-      with:
-        server: ${{ secrets.ftp_server }}
-        username: ${{ secrets.ftp_username }}
-        password: ${{ secrets.ftp_password }}
