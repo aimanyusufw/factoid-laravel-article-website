@@ -2,7 +2,7 @@
 @section('content')
     <section id="Header" class="py-10">
         <div class="container min-h-screen">
-            <div class="w-full flex flex-col items-center">
+            <div class="w-full flex flex-col items-center p-4">
                 <div class="w-16 h-16 bg-black rounded-full flex justify-center items-center mb-4">
                     <i data-feather="{{ $icon === null ? 'paperclip' : $icon }}" class="w-8 h-8 text-white"></i>
                 </div>

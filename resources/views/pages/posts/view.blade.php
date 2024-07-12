@@ -6,21 +6,19 @@
                 <div class="p-4">
                     <img src="{{ $post->banner_url }}" alt="{{ $post->title }}" class="rounded-lg w-full">
                 </div>
-                <div class="flex items-center justify-between p-4">
-                    <h1 class="font-bold text-4xl font-inria-serif">{{ $post->title }}</h1>
-                    <button>
-                        <i data-feather="send"></i>
-                    </button>
+                <div class="p-4">
+                    <h1 class="font-bold text-3xl md:text-4xl font-inria-serif mb-4">{{ $post->title }}</h1>
+                    <a href="/discover/{{ $post->category->slug }}"
+                        class="font-bold font-inter text-black hover:underline text-sm md:text-base pe-2">{{ $post->category->name }}</a>·
+                    <span class="text-sm md:text-base font-medium">{{ $post->readTime() }}
+                    </span>
                 </div>
-                <div class="flex gap-4 items-center p-4 font-inter font-medium text-sm text-secondary ">
+                <div class="flex flex-wrap gap-4 items-center p-4 font-inter font-medium text-sm text-secondary ">
                     <img src="{{ $post->author->profile_picture_url }}" alt="{{ $post->author->name }}"
                         class="rounded-full h-10 w-10">
                     <span class="font-inter font-medium text-sm text-secondary">{{ $post->author->name }}
                         ·
-                        {{ $post->published_at->diffForHumans() }}</span> ·
-                    <a href="/discvoer/{{ $post->category->slug }}"
-                        class="font-bold text-black hover:underline">{{ $post->category->name }}</a>·
-                    {{ $post->readTime() }}
+                        {{ $post->published_at->diffForHumans() }}</span>
                 </div>
                 <div class="flex w-full justify-between">
                     <div class="prose lg:prose-lg max-w-full p-4 md:max-w-[75%] ">

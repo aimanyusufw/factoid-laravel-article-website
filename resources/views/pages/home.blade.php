@@ -48,7 +48,7 @@
                     </a>
                 </div>
                 <div class="w-full flex flex-wrap justify-between items-start">
-                    <div class="w-full md:w-[65%] px-4">
+                    <div class="w-full md:w-[65%] p-4 mb-5">
                         <a href="/post/{{ $popularPosts[0]->slug }}">
                             <img src="{{ $popularPosts[0]->banner_url }}" alt="" class="rounded-lg shadow-lg mb-5">
                         </a>
@@ -74,7 +74,7 @@
                             {{ $popularPosts[0]->readTime() }}
                         </h5>
                     </div>
-                    <div class="w-full md:w-[35%] px-4 flex flex-col justify-between gap-6">
+                    <div class="w-full md:w-[35%] p-4 flex flex-col justify-between gap-6">
                         @foreach ($popularPosts->skip(1) as $post)
                             <div class="flex flex-col gap-4">
                                 <a href="/post/{{ $post->slug }}">
@@ -108,7 +108,7 @@
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                     @foreach ($recentPosts as $post)
-                        <div class="px-4">
+                        <div class="p-4">
                             <a href="/post/{{ $post->slug }}">
                                 <img src="{{ $post->banner_url }}" alt="{{ $post->title }}"
                                     class="rounded-md shadow-lg mb-4">
@@ -147,10 +147,10 @@
                         <i data-feather="arrow-up-right" class="inline ms-2 h-4 w-4"></i>
                     </a>
                 </div>
-                <div class="px-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10">
+                <div class="p-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 md:gap-10">
                     @foreach ($discovereds as $category)
                         <a href="/discover/{{ $category->slug }}">
-                            <div class="w-full h-[400px] overflow-hidden bg-center bg-cover rounded-xl relative bg-black"
+                            <div class="w-full h-[300px] md:h-[400px] overflow-hidden bg-center bg-cover rounded-xl relative bg-black"
                                 style="background-image: url({{ $category->thumbnail_url }});">
                                 <div
                                     class="absolute bg-black bg-opacity-50 top-0 left-0 right-0 bottom-0 flex justify-center items-center">
@@ -173,7 +173,7 @@
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                     @foreach ($randomPosts as $post)
-                        <div class="px-4">
+                        <div class="p-4">
                             <a href="/post/{{ $post->slug }}">
                                 <img src="{{ $post->banner_url }}" alt="{{ $post->title }}"
                                     class="rounded-md shadow-lg mb-4">

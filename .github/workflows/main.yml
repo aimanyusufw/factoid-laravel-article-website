@@ -1,45 +1,16 @@
-name: 🚀 Deploy to cPanel
-
-on:
-  push:
-    branches:
-      - main  
-
+on: push
+name: 🚀 Deploy website on push
 jobs:
-  deploy:
+  web-deploy:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          php-version: '8.2'
-          extensions: mbstring, pdo, xml, ctype, json, tokenizer, bcmath, zip, gd, curl, sqlite3
-
-      - name: Install Composer Dependencies
-        run: composer install --no-dev --optimize-autoloader
-
-      - name: Generate Optimized Laravel Artifacts
-        run: php artisan optimize
-
-      - name: Install Node.js and npm
-        uses: actions/setup-node@v2
-        with:
-          node-version: '21'
-
-      - name: SSH and Deploy
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.CPANEL_HOST }}
-          username: ${{ secrets.CPANEL_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}  # Masukkan private key SSH dari server GitHub Actions
-          script: |
-            cd /home/aimany/portfolio-website
-            git pull origin main  
-            composer install --no-dev --optimize-autoloader
-            npm install
-            npm run build
-
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}

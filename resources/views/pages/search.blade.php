@@ -2,7 +2,7 @@
 @section('content')
     <section class="py-10" id="Search Result">
         <div class="container min-h-screen">
-            <div class="w-full flex flex-col items-center">
+            <div class="w-full flex flex-col items-center p-4">
                 <div class="w-16 h-16 bg-black rounded-full flex justify-center items-center mb-4">
                     <i data-feather="gift" class="w-8 h-8 text-white"></i>
                 </div>
@@ -36,7 +36,8 @@
                                             {{ $post->title }}
                                         </h1>
                                     </a>
-                                    <div class="flex gap-4 items-center mb-4">
+                                    <p class="text-sm text-secondary max-w-xs line-clamp-2 mb-4">{{ $post->excerpt }}</p>
+                                    <div class="flex gap-4 items-center">
                                         <img src="{{ $post->author->profile_picture_url }}" alt="{{ $post->author->name }}"
                                             class="rounded-full h-10 w-10">
                                         <span
