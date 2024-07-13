@@ -17,3 +17,4 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->create();
+   // ->usePublicPath("./../factoid.aimanyusuf.site")
