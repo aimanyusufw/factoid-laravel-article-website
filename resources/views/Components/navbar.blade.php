@@ -38,8 +38,8 @@
     aria-label="Sidebar">
     <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50">
         <div class="flex items-center p-2 my-5 justify-between">
-            <a href="/" class="self-center text-2xl font-bold whitespace-nowrap">
-                Aiman Yusuf
+            <a href="/" class="self-center text-2xl font-bold whitespace-nowrap font-inria-serif">
+                Factoid
             </a>
         </div>
         <ul class="space-y-2 font-medium">

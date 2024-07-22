@@ -7,7 +7,7 @@
                     <img src="{{ $post->banner_url }}" alt="{{ $post->title }}" class="rounded-lg w-full">
                 </div>
                 <div class="p-2">
-                    <h1 class="font-bold text-3xl md:text-4xl font-inria-serif mb-4">{{ $post->title }}</h1>
+                    <h1 class="font-bold text-2xl md:text-4xl font-inria-serif mb-4">{{ $post->title }}</h1>
                     <a href="/discover/{{ $post->category->slug }}"
                         class="font-bold font-inter text-black hover:underline text-sm md:text-base pe-2">{{ $post->category->name }}</a>·
                     <span class="text-sm md:text-base font-medium">{{ $post->readTime() }}
@@ -21,7 +21,7 @@
                         {{ $post->published_at->diffForHumans() }}</span>
                 </div>
                 <div class="flex w-full justify-between">
-                    <div class="prose lg:prose-lg max-w-full p-4 md:max-w-[75%] ">
+                    <div class="prose lg:prose-lg max-w-full p-2 md:max-w-[75%] ">
                         {!! $post->content !!}
                     </div>
                     @if ($popularPosts && $popularPosts->count() >= 5)
@@ -46,7 +46,7 @@
                     @endif
                 </div>
             </article>
-            <div class="w-full px-4 mt-12 mb-8 flex justify-between items-baseline">
+            <div class="w-full px-2 mt-12 mb-8 flex justify-between items-baseline">
                 <h1 class="font-bold text-2xl font-inria-serif">Posts You Might Like</h1>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mb-12">
