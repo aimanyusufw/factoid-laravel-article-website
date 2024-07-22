@@ -13,7 +13,6 @@ export default {
         },
         container: {
             center: true,
-            padding: "16px",
         },
         extend: {
             colors: {
