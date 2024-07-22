@@ -1,6 +1,6 @@
 <nav id="navbar">
     <div class="container">
-        <div class="w-full px-4 py-4">
+        <div class="w-full px-2 py-4">
             <div class="flex justify-between items-baseline">
                 <a href="/" class="text-2xl font-serif font-bold">
                     Factoid.

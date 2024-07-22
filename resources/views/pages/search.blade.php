@@ -2,7 +2,7 @@
 @section('content')
     <section class="py-10" id="Search Result">
         <div class="container min-h-screen">
-            <div class="w-full flex flex-col items-center p-4">
+            <div class="w-full flex flex-col items-center px-2 py-4">
                 <div class="w-16 h-16 bg-black rounded-full flex justify-center items-center mb-4">
                     <i data-feather="gift" class="w-8 h-8 text-white"></i>
                 </div>
@@ -14,7 +14,7 @@
                 </p>
             </div>
             <div class="w-full flex justify-between flex-wrap-reverse py-8">
-                <div class="w-full lg:w-3/4 px-4">
+                <div class="w-full lg:w-3/4 px-2 py-4">
                     <h1 class="font-bold font-inria-serif text-xl mb-4">Posts</h1>
                     @if ($posts && $posts->count() > 0)
                         @foreach ($posts as $post)
@@ -84,7 +84,7 @@
                         </div>
                     @endif
                 </div>
-                <div class="w-full lg:w-1/4 px-4">
+                <div class="w-full lg:w-1/4 px-2 py-4">
                     <h1 class="font-bold font-inria-serif text-xl mb-4">Categories</h1>
                     @if ($categories && $categories->count() > 0)
                         @foreach ($categories as $category)

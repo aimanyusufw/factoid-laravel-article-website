@@ -2,7 +2,7 @@
 @section('content')
     <section id="Header" class="py-10">
         <div class="container min-h-screen">
-            <div class="w-full flex flex-col items-center p-4">
+            <div class="w-full flex flex-col items-center px-2 py-4">
                 <div class="w-16 h-16 bg-black rounded-full flex justify-center items-center mb-4">
                     <i data-feather="{{ $icon === null ? 'paperclip' : $icon }}" class="w-8 h-8 text-white"></i>
                 </div>
@@ -14,7 +14,7 @@
                 @if ($posts && $posts->count() > 0)
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                         @foreach ($posts as $post)
-                            <div class="p-4">
+                            <div class="px-2 py-4">
                                 <a href="/post/{{ $post->slug }}">
                                     <img src="{{ $post->banner_url }}" alt="{{ $post->title }}"
                                         class="rounded-md shadow-md mb-4">

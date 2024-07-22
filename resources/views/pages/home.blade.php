@@ -9,7 +9,7 @@
                             <img src="{{ $latestPost->banner_url }}" alt="" class="rounded-lg shadow-lg">
                         </a>
                     </div>
-                    <div class="w-full md:w-1/2 px-4">
+                    <div class="w-full md:w-1/2 px-2">
                         <div class="flex gap-4 items-center mb-4">
                             <img src="{{ $latestPost->author->profile_picture_url }}" alt="{{ $latestPost->author->name }}"
                                 class="rounded-full h-10 w-10">
@@ -40,7 +40,7 @@
     <div class="py-8" id="Popular Post">
         <div class="container">
             @if ($popularPosts && $popularPosts->count() == 3)
-                <div class="w-full px-4 mb-12 flex justify-between items-baseline">
+                <div class="w-full px-2 mb-12 flex justify-between items-baseline">
                     <h1 class="font-bold text-2xl font-inria-serif">Popular News</h1>
                     <a href="/featured" class="text-xs hover:underline font-medium">
                         Show All
@@ -48,7 +48,7 @@
                     </a>
                 </div>
                 <div class="w-full flex flex-wrap justify-between items-start">
-                    <div class="w-full md:w-[65%] p-4 mb-5">
+                    <div class="w-full md:w-[65%] px-2 py-4 mb-5">
                         <a href="/post/{{ $popularPosts[0]->slug }}">
                             <img src="{{ $popularPosts[0]->banner_url }}" alt="" class="rounded-lg shadow-lg mb-5">
                         </a>
@@ -74,7 +74,7 @@
                             {{ $popularPosts[0]->readTime() }}
                         </h5>
                     </div>
-                    <div class="w-full md:w-[35%] p-4 flex flex-col justify-between gap-6">
+                    <div class="w-full md:w-[35%] px-2 py-4 flex flex-col justify-between gap-6">
                         @foreach ($popularPosts->skip(1) as $post)
                             <div class="flex flex-col gap-4">
                                 <a href="/post/{{ $post->slug }}">
@@ -99,7 +99,7 @@
     <div class="py-8" id="Recent Post">
         <div class="container">
             @if ($recentPosts && $recentPosts->count() == 3)
-                <div class="w-full px-4 mb-12 flex justify-between items-baseline">
+                <div class="w-full px-2 mb-12 flex justify-between items-baseline">
                     <h1 class="font-bold text-2xl font-inria-serif">Recent News</h1>
                     <a href="/recent-posts" class="text-xs hover:underline font-medium">
                         Show All
@@ -108,7 +108,7 @@
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                     @foreach ($recentPosts as $post)
-                        <div class="p-4">
+                        <div class="px-2 py-4">
                             <a href="/post/{{ $post->slug }}">
                                 <img src="{{ $post->banner_url }}" alt="{{ $post->title }}"
                                     class="rounded-md shadow-lg mb-4">
@@ -140,14 +140,14 @@
     <div class="py-8" id="Discover">
         <div class="container">
             @if ($discovereds && $discovereds->count() == 4)
-                <div class="w-full px-4 mb-12 flex justify-between items-baseline">
+                <div class="w-full px-2 mb-12 flex justify-between items-baseline">
                     <h1 class="font-bold text-2xl font-inria-serif">Discovered</h1>
                     <a href="/discover" class="text-xs hover:underline font-medium">
                         Show All
                         <i data-feather="arrow-up-right" class="inline ms-2 h-4 w-4"></i>
                     </a>
                 </div>
-                <div class="p-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 md:gap-10">
+                <div class="px-2 py-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 md:gap-10">
                     @foreach ($discovereds as $category)
                         <a href="/discover/{{ $category->slug }}">
                             <div class="w-full h-[300px] md:h-[400px] overflow-hidden bg-center bg-cover rounded-xl relative bg-black"
@@ -168,12 +168,12 @@
     <div class="py-8" id="Random Post">
         <div class="container">
             @if ($randomPosts && $randomPosts->count() == 3)
-                <div class="w-full px-4 mb-12 flex justify-between items-baseline">
+                <div class="w-full px-2 mb-12 flex justify-between items-baseline">
                     <h1 class="font-bold text-2xl font-inria-serif">Posts You Might Like</h1>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                     @foreach ($randomPosts as $post)
-                        <div class="p-4">
+                        <div class="px-2 py-4">
                             <a href="/post/{{ $post->slug }}">
                                 <img src="{{ $post->banner_url }}" alt="{{ $post->title }}"
                                     class="rounded-md shadow-lg mb-4">
@@ -204,7 +204,7 @@
     <section class="py-40" id="Suscribe">
         <div class="container">
             <div class="w-full flex justify-center items-center">
-                <div class="p-4">
+                <div class="px-2 py-4">
                     <h5 class="font-medium font-inter mb-5 md:text-center">Want to be left behind with our updates?</h5>
                     <h1 class="md:text-center capitalize font-bold font-inria-serif text-2xl md:text-4xl mb-8">stay up to
                         date
@@ -212,7 +212,7 @@
                         newsletter</h1>
                     <div class="flex gap-2">
                         <div
-                            class="w-full relative flex items-center px-4 py-3 gap-2 border border-gray-300 rounded-full bg-[#F3F4F6] focus-within:ring-1 focus-within:ring-gray-600">
+                            class="w-full relative flex items-center px-2 py-3 gap-2 border border-gray-300 rounded-full bg-[#F3F4F6] focus-within:ring-1 focus-within:ring-gray-600">
                             <i data-feather="mail" class="w-5 h-5"></i>
                             <input type="text" placeholder="Your Email Here"
                                 class="text-sm w-full placeholder:font-normal placeholder:font-inria-serif focus:outline-none focus:ring-transparent text-black rounded-e-full bg-[#F3F4F6]">

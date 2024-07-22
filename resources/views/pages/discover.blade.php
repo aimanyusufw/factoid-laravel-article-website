@@ -2,7 +2,7 @@
 @section('content')
     <section id="Header" class="py-10">
         <div class="container">
-            <div class="w-full flex flex-col items-center p-4">
+            <div class="w-full flex flex-col items-center px-2">
                 <div class="w-16 h-16 bg-black rounded-full flex justify-center items-center mb-4">
                     <i data-feather="paperclip" class="w-8 h-8 text-white"></i>
                 </div>
@@ -20,7 +20,7 @@
     <div class="pt-8 pb-24" id="Discover">
         <div class="container">
             @if ($discovers && $discovers->count() > 1)
-                <div class="px-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 md:gap-10">
+                <div class="px-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 md:gap-10">
                     @foreach ($discovers as $category)
                         <a href="/discover/{{ $category->slug }}">
                             <div class="w-full h-[300px] md:h-[400px] overflow-hidden bg-center bg-cover rounded-xl relative bg-black"

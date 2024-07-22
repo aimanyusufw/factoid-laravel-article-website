@@ -3,17 +3,17 @@
     <section class="py-4 min-h-screen">
         <div class="container">
             <article class="w-full">
-                <div class="p-4">
+                <div class="p-2">
                     <img src="{{ $post->banner_url }}" alt="{{ $post->title }}" class="rounded-lg w-full">
                 </div>
-                <div class="p-4">
+                <div class="p-2">
                     <h1 class="font-bold text-3xl md:text-4xl font-inria-serif mb-4">{{ $post->title }}</h1>
                     <a href="/discover/{{ $post->category->slug }}"
                         class="font-bold font-inter text-black hover:underline text-sm md:text-base pe-2">{{ $post->category->name }}</a>·
                     <span class="text-sm md:text-base font-medium">{{ $post->readTime() }}
                     </span>
                 </div>
-                <div class="flex flex-wrap gap-4 items-center p-4 font-inter font-medium text-sm text-secondary ">
+                <div class="flex flex-wrap gap-4 items-center p-2 font-inter font-medium text-sm text-secondary ">
                     <img src="{{ $post->author->profile_picture_url }}" alt="{{ $post->author->name }}"
                         class="rounded-full h-10 w-10">
                     <span class="font-inter font-medium text-sm text-secondary">{{ $post->author->name }}
@@ -25,7 +25,7 @@
                         {!! $post->content !!}
                     </div>
                     @if ($popularPosts && $popularPosts->count() >= 5)
-                        <div class="w-1/4 hidden md:block p-4 ">
+                        <div class="w-1/4 hidden md:block p-2">
                             @foreach ($popularPosts as $index => $post)
                                 <div class="flex items-center mb-4">
                                     <a href="/post/{{ $post->slug }}"
@@ -51,7 +51,7 @@
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mb-12">
                 @foreach ($post->relatedArticles() as $post)
-                    <div class="p-4">
+                    <div class="px-2 py-4">
                         <a href="/post/{{ $post->slug }}">
                             <img src="{{ $post->banner_url }}" alt="{{ $post->title }}"
                                 class="rounded-md shadow-md mb-4">
