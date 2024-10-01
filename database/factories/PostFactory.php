@@ -17,7 +17,6 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
-        $postsImages = [];
 
         return [
             'title' => fake()->sentence(8),

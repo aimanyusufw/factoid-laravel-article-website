@@ -19,14 +19,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        $faker = Faker::create();
-
-        // User::factory(10)->create();
-
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
 
         $categories = ["Space", "Football", "Politic", "Military", "Programming", "Artificial intelligence"];
 
@@ -44,11 +36,11 @@ class DatabaseSeeder extends Seeder
 
         foreach ($authorProfilePictures as $profilePicture) {
             Author::create([
-                'name' => $faker->name,
-                'position' => $faker->jobTitle,
+                'name' => fake()->name,
+                'position' => fake()->jobTitle,
                 'profile_picture' => 'authors/' . $profilePicture,
-                'bio' => $faker->sentence,
-                'email' => $faker->unique()->safeEmail,
+                'bio' => fake()->sentence,
+                'email' => fake()->unique()->safeEmail,
             ]);
         }
 
