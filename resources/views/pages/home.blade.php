@@ -4,7 +4,7 @@
         <div class="container">
             @if ($latestPost && $latestPost !== null)
                 <div class="w-full flex flex-wrap justify-between items-center">
-                    <div class="w-full md:w-1/2 p-4 ">
+                    <div class="w-full md:w-1/2 p-2">
                         <a href="/post/{{ $latestPost->slug }}">
                             <img src="{{ $latestPost->banner_url }}" alt="" class="rounded-lg shadow-lg">
                         </a>
@@ -17,7 +17,8 @@
                                 {{ $latestPost->published_at->diffForHumans() }}</span>
                         </div>
                         <a href="/post/{{ $latestPost->slug }}">
-                            <h1 class="font-inria-serif text-4xl capitalize font-bold leading-snug line-clamp-3 mb-4">
+                            <h1
+                                class="font-inria-serif max-w-md text-4xl capitalize font-bold leading-snug line-clamp-3 mb-4">
                                 {{ $latestPost->title }}
                             </h1>
                         </a>
@@ -212,10 +213,10 @@
                         newsletter</h1>
                     <div class="flex gap-2">
                         <div
-                            class="w-full relative flex items-center px-2 py-3 gap-2 border border-gray-300 rounded-full bg-[#F3F4F6] focus-within:ring-1 focus-within:ring-gray-600">
+                            class="w-full relative flex items-center px-4 py-3 gap-4 border border-gray-300 rounded-full bg-[#F3F4F6] focus-within:ring-1 focus-within:ring-gray-600">
                             <i data-feather="mail" class="w-5 h-5"></i>
                             <input type="text" placeholder="Your Email Here"
-                                class="text-sm w-full placeholder:font-normal placeholder:font-inria-serif focus:outline-none focus:ring-transparent text-black rounded-e-full bg-[#F3F4F6]">
+                                class="text-base w-full placeholder:font-normal placeholder:font-inria-serif focus:outline-none focus:ring-transparent text-black rounded-e-full bg-[#F3F4F6]">
                         </div>
                         <button type="submit"
                             class="px-6 py-3 bg-black text-white font-inria-serif rounded-full text-s,">Subscribe</button>

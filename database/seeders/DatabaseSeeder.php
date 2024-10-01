@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +18,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        $faker = Faker::create();
+
         // User::factory(10)->create();
 
         // User::factory()->create([
@@ -30,18 +34,23 @@ class DatabaseSeeder extends Seeder
             Category::create([
                 "name" => $category,
                 "slug" => Str::slug($category),
-                "thumbnail" => "https://plus.unsplash.com/premium_photo-1718146018251-1e59e5d6f2a1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyNXx8fGVufDB8fHx8fA%3D%3D",
+                "thumbnail" => "categories/" . Str::slug($category) .
+                    '.jpg',
                 "description" => "This is posts about " . $category
             ]);
         }
 
-        Author::create([
-            'name' => 'Aiman Yusuf',
-            "position" => "Web Developer",
-            "profile_picture" => "https://media.licdn.com/dms/image/D5603AQGL4nkmtkSM9Q/profile-displayphoto-shrink_400_400/0/1713844916125?e=2147483647&v=beta&t=pf_eMS5BVvAEdJaLgrUl3j5mbdU7wO6HkhGLq6Hlask",
-            "bio" => "Hello my name is aiman",
-            "email" => "aimanyusufdev@gmail.com",
-        ]);
+        $authorProfilePictures = ['Author-1.jpg', 'Author-2.jpg', 'Author-3.jpg', 'Author-4.jpg', 'Author-5.jpg', 'Author-6.jpg'];
+
+        foreach ($authorProfilePictures as $profilePicture) {
+            Author::create([
+                'name' => $faker->name,
+                'position' => $faker->jobTitle,
+                'profile_picture' => 'authors/' . $profilePicture,
+                'bio' => $faker->sentence,
+                'email' => $faker->unique()->safeEmail,
+            ]);
+        }
 
         Post::factory(30)->create();
     }

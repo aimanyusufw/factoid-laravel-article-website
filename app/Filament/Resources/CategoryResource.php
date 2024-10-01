@@ -44,14 +44,15 @@ class CategoryResource extends Resource
                     Forms\Components\TextInput::make('slug')
                         ->required()
                         ->readOnly()
-                        ->unique(Category::class, 'slug', fn ($record) => $record)
+                        ->unique(Category::class, 'slug', fn($record) => $record)
                         ->maxLength(255),
                     Forms\Components\FileUpload::make('thumbnail')
                         ->image()
                         ->disk("public")
                         ->maxSize(5120)
                         ->imageCropAspectRatio('9:16')
-                        ->directory("category")
+                        ->directory("categories")
+                        ->imageEditor()
                         ->columnSpan([
                             'sm' => 2,
                         ]),
@@ -62,9 +63,9 @@ class CategoryResource extends Resource
                     ->columnSpan(2),
                 Forms\Components\Section::make()->schema([
                     Forms\Components\Placeholder::make("Created at")
-                        ->content(fn (?Category $record) => $record ? $record->created_at->diffForHumans() : "-"),
+                        ->content(fn(?Category $record) => $record ? $record->created_at->diffForHumans() : "-"),
                     Forms\Components\Placeholder::make("Updated at")
-                        ->content(fn (?Category $record) => $record ? $record->updated_at->diffForHumans() : "-")
+                        ->content(fn(?Category $record) => $record ? $record->updated_at->diffForHumans() : "-")
                 ])
                     ->columnSpan(1)
             ])->columns(3);

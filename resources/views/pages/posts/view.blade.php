@@ -21,11 +21,11 @@
                         {{ $post->published_at->diffForHumans() }}</span>
                 </div>
                 <div class="flex w-full justify-between">
-                    <div class="prose lg:prose-lg max-w-full p-2 md:max-w-[75%] ">
+                    <div class="prose lg:prose-lg w-full p-2 md:max-w-[70%] ">
                         {!! $post->content !!}
                     </div>
                     @if ($popularPosts && $popularPosts->count() >= 5)
-                        <div class="w-1/4 hidden md:block p-2">
+                        <div class="w-[25%] hidden md:block p-2">
                             @foreach ($popularPosts as $index => $post)
                                 <div class="flex items-center mb-4">
                                     <a href="/post/{{ $post->slug }}"

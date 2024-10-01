@@ -51,6 +51,7 @@ class PostResource extends Resource
                         ->disk("public")
                         ->maxSize(5120)
                         ->directory("posts")
+                        ->imageEditor()
                         ->default(null)
                         ->columnSpanFull(),
                     Forms\Components\RichEditor::make('content')
@@ -87,9 +88,9 @@ class PostResource extends Resource
                         ->inputMode("decimal")
                         ->extraInputAttributes(['step' => '0.1']),
                     Forms\Components\Placeholder::make("Created at")
-                        ->content(fn (?Post $record): string => $record ? $record->created_at->diffForHumans() : "-"),
+                        ->content(fn(?Post $record): string => $record ? $record->created_at->diffForHumans() : "-"),
                     Forms\Components\Placeholder::make("Upated at")
-                        ->content(fn (?Post $record): string => $record ? $record->updated_at->diffForHumans() : "-"),
+                        ->content(fn(?Post $record): string => $record ? $record->updated_at->diffForHumans() : "-"),
                 ])->columnSpan(1)
             ])->columns(3);
     }

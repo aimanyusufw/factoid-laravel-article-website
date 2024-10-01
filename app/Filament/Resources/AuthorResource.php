@@ -38,6 +38,7 @@ class AuthorResource extends Resource
                         ->maxSize(5120)
                         ->imageCropAspectRatio('10:10')
                         ->directory("authors")
+                        ->imageEditor()
                         ->columnSpan([
                             'sm' => 2,
                         ]),
@@ -60,9 +61,9 @@ class AuthorResource extends Resource
                 ])->columns(["sm" => 2])->columnSpan(2),
                 Forms\Components\Section::make()->schema([
                     Forms\Components\Placeholder::make("Created at")
-                        ->content(fn (?Author $record) => $record ? $record->created_at->diffForHumans() : "-"),
+                        ->content(fn(?Author $record) => $record ? $record->created_at->diffForHumans() : "-"),
                     Forms\Components\Placeholder::make("Updated at")
-                        ->content(fn (?Author $record) => $record ? $record->updated_at->diffForHumans() : "-")
+                        ->content(fn(?Author $record) => $record ? $record->updated_at->diffForHumans() : "-")
                 ])->columnSpan(1)
             ])->columns(3);
     }
