@@ -9,7 +9,6 @@ use Illuminate\Support\Str;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,8 +17,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
-        $faker = Faker::create();
 
         $categories = ["Space", "Football", "Politic", "Military", "Programming", "Artificial intelligence"];
 
@@ -33,15 +30,22 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        $authorProfilePictures = ['Author-1.jpg', 'Author-2.jpg', 'Author-3.jpg', 'Author-4.jpg', 'Author-5.jpg', 'Author-6.jpg'];
+        $authors = [
+            ["name" => "David Brown", "jobTitle" => "Full Stack Developer"],
+            ["name" => "Sophia Wilson", "jobTitle" => "Marketing Specialist"],
+            ["name" => "William Martinez", "jobTitle" => "Cloud Engineer"],
+            ["name" => "Isabella Taylor", "jobTitle" => "AI Researcher"],
+            ["name" => "James Lee", "jobTitle" => "DevOps Engineer"],
+            ["name" => "Olivia Anderson", "jobTitle" => "Cybersecurity Analyst"]
+        ];
 
-        foreach ($authorProfilePictures as $profilePicture) {
+        foreach ($authors as $index => $author) {
             Author::create([
-                'name' => $faker->name,
-                'position' => $faker->jobTitle,
-                'profile_picture' => 'authors/' . $profilePicture,
-                'bio' => $faker->sentence,
-                'email' => $faker->unique()->safeEmail,
+                'name' => $author['name'],
+                'position' => $author['jobTitle'],
+                'profile_picture' => 'authors/Author-' . $index + 1 . ".jpg",
+                'bio' => "Hello my name is " . $author['name'] . " and i'am as a" . $author['jobTitle'],
+                'email' => $author['name'] . "@aimanyusuf.site",
             ]);
         }
 
