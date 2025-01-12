@@ -3,7 +3,7 @@
         <div class="w-full px-2 py-4">
             <div class="flex justify-between items-baseline">
                 <a href="/" class="text-2xl font-serif font-bold">
-                    Factoid.
+                    Factoid
                 </a>
                 <button type="button" id="hamburger-toggle" class="inline-flex items-center text-sm rounded-lg md:hidden">
                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
